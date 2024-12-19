@@ -1,16 +1,7 @@
 class Gestor {
 
-    itemSimple = [
-        {"nom" : "", "descripció" : "", "dataCreacio" : "", "dataModificacio" : "" },
-        {"nom" : "", "descripció" : "", "dataCreacio" : "", "dataModificacio" : "" },
-        
-    ]
-
-    itemVisual = [
-        {"nom" : "", "descripció" : "", "url" : "", "dataCreacio" : "", "dataModificacio" : "" },
-        {"nom" : "", "descripció" : "", "url" : "", "dataCreacio" : "", "dataModificacio" : "" },
-    
-    ]
+    itemSimple = [];
+    itemVisual = [];
 
     constructor(itemSimple, itemVisual) {
         this.itemSimple = itemSimple;
@@ -26,18 +17,22 @@ class Gestor {
         }
     }
 
-    crearItem() {
-        nom = document.getElementById("nombre").textContent
-        descripció = document.getElementById("descripcio").textContent
-        dataCreacio = Date.now()
-        if(this) {
-            this.itemSimple.push({"nom" : "", "descripció" : "", "dataCreacio" : "", "dataModificacio" : "" })
+    modificarItem(dataCreacio) {
+        
+        dataModificacio = new Date()
+        if () {
+            this.itemSimple[i] = {"nom" : nom, "descripció" : descripcio, "dataCreacio" : dataCreacio, "dataModificacio" : dataModificacio }
         }
     }
-
-    modificarItem() {
-
+    crearItem() {
+        nom = document.getElementById("nombre").textContent
+        descripcio = document.getElementById("descripcio").textContent
+        dataCreacio = new Date()
+        if(this) {
+            this.itemSimple.push({"nom" : nom, "descripció" : descripcio, "dataCreacio" : dataCreacio, "dataModificacio" : dataCreacio })
+        }
     }
+    
 
     eliminarItem() {
 
