@@ -27,6 +27,9 @@ class Gestor {
     }
 
     crearItem() {
+        nom = document.getElementById("nombre").textContent
+        descripció = document.getElementById("descripcio").textContent
+        dataCreacio = Date.now()
         if(this) {
             this.itemSimple.push({"nom" : "", "descripció" : "", "dataCreacio" : "", "dataModificacio" : "" })
         }
