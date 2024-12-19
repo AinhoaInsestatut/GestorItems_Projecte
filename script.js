@@ -21,7 +21,7 @@ class Gestor {
         
         dataModificacio = new Date()
         if () {
-            this.itemSimple. = {"nom" : nom, "descripció" : descripcio, "dataCreacio" : dataCreacio, "dataModificacio" : dataModificacio }
+            this.itemSimple. = {"nom" : nomMod, "descripció" : descripcioMod, "dataCreacio" : dataCreacio, "dataModificacio" : dataModificacio }
         }
     }
     crearItem() {
