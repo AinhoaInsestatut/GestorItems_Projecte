@@ -27,7 +27,9 @@ class Gestor {
     }
 
     crearItem() {
-
+        if(this) {
+            this.itemSimple.push({"nom" : "", "descripció" : "", "dataCreacio" : "", "dataModificacio" : "" })
+        }
     }
 
     modificarItem() {
