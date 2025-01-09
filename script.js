@@ -21,7 +21,7 @@ class Gestor {
         nomMod = document.getElementById("nombreNou")
         descripcioMod = document.getElementById("descNou")
         dataModificacio = new Date()
-        if () {
+        if (this) {
             this.itemsSimples = {"nom" : nomMod, "descripció" : descripcioMod, "dataCreacio" : dataCreacio, "dataModificacio" : dataModificacio }
         }
     }
@@ -36,7 +36,9 @@ class Gestor {
     
 
     eliminarItem() {
-
+        if()    {
+            this.itemsSimples.slice(0, this.itemsSimples.length)
+        }
     }
 
 
