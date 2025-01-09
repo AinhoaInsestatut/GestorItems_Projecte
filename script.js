@@ -1,17 +1,14 @@
 class Gestor {
 
-    itemsSimples = [];
-    itemsVisuales = [];
+    items = [];
 
-    constructor(itemSimple, itemVisual) {
-        this.itemsSimples = itemSimple;
-        this.itemVisual = itemVisual;
+    constructor(items) {
+        this.items = items;
     }
     
     llistarItem() {
-       if (this.itemsSimples && this.itemsVisuales) {
-            console.log(this.itemsSimples);
-            console.log(this.itemsVisuales);
+       if (this.items) {
+            console.log(this.items);
         } else {
             console.log("No existe ningún item.");
         }
@@ -22,7 +19,7 @@ class Gestor {
         descripcioMod = document.getElementById("descNou")
         dataModificacio = new Date()
         if (this) {
-            this.itemsSimples = {"nom" : nomMod, "descripció" : descripcioMod, "dataCreacio" : dataCreacio, "dataModificacio" : dataModificacio }
+            this.items = {"nom" : nomMod, "descripció" : descripcioMod, "dataCreacio" : dataCreacio, "dataModificacio" : dataModificacio }
         }
     }
     crearItem() {
@@ -30,16 +27,17 @@ class Gestor {
         descripcio = document.getElementById("descripcio").textContent
         dataCreacio = new Date()
         if(this) {
-            this.itemsSimples.push({"nom" : nom, "descripció" : descripcio, "dataCreacio" : dataCreacio, "dataModificacio" : dataCreacio })
+            this.items.push({"nom" : nom, "descripció" : descripcio, "dataCreacio" : dataCreacio, "dataModificacio" : dataCreacio })
         }
     }
     
 
     eliminarItem() {
         if()    {
-            this.itemsSimples.slice(0, this.itemsSimples.length)
+            this.items.slice(0, this.items.length)
         }
     }
 
 
 }
+
