@@ -7,7 +7,7 @@ class Gestor {
     }
     
     llistarItem() {
-       if (this.items) {
+    if (this.items) {
             console.log(this.items);
         } else {
             console.log("No existe ningún item.");
@@ -33,8 +33,8 @@ class Gestor {
     
 
     eliminarItem() {
-        if()    {
-            this.items.slice(0, this.items.length)
+        if(this.items.length > 0)    {
+            this.items.splice(0, this.items.length);
         }
     }
 
