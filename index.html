@@ -11,8 +11,18 @@
         <h1>GESTOR DE ITEMS</h1>
         <input type="text" id="cerca" placeholder="Cerca els items">
         <div id="itemList" class="item-list"></div>
+    
+        <form id="crearItemForm">
+            <h2>Crea un ítem</h2>
+            <input type="text" id="nombre" placeholder="Nom" required>
+            <textarea id="descripcio" placeholder="Descripció"></textarea>
+            <input type="text" id="imatge" placeholder="URL de la imatge (opcional)">
+            <button type="submit">Crear Ítem</button>
+        </form>
     </div>
-
-    <script src="script.js"></script>
+    
+    <script src="gestor.js"></script>
+    <script src="items.js"></script>
+    
 </body>
 </html>
