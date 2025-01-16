@@ -6,6 +6,10 @@ class Gestor {
         this.items = items;
     }
     
+    guardarItems() {
+        localStorage.setItem('items', JSON.stringify(this.items));
+    }
+
     llistarItem() {
     if (this.items) {
             console.log(this.items);
