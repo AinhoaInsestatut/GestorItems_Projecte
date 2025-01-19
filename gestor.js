@@ -3,7 +3,7 @@ class Gestor {
     items = [];
 
     constructor(items) {
-        this.items = items;
+        this.items = [];
     }
     
     guardarItems() {
