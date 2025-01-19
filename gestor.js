@@ -1,8 +1,6 @@
 class Gestor {
 
-    items = [];
-
-    constructor(items) {
+    constructor() {
         this.items = [];
     }
     
@@ -11,7 +9,7 @@ class Gestor {
     }
 
     llistarItem() {
-    if (this.items) {
+        if (this.items) {
             console.log(this.items);
         } else {
             console.log("No existe ningún item.");
