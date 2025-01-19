@@ -8,12 +8,24 @@ class Gestor {
         localStorage.setItem('items', JSON.stringify(this.items));
     }
 
-    llistarItem() {
-        if (this.items) {
-            console.log(this.items);
-        } else {
-            console.log("No existe ningún item.");
+    actualitzaItem(nom, nouDades) {
+        let item = this.items.find(i => i.nom === nom);
+        if (item) {
+
+            if (nouDades.nom !== null) {
+                item.nom = nouDades.nom
+            }
+            if (nouDades.descripcio !== null) {
+
+                item.descripcio = nouDades.descripcio
+            }
+            if (nouDades.imatge !== null) {
+                item.imatge = nouDades.imatge
+            }
+            item.dataModificacio = new Date().toISOString();
+    
         }
+        this.guardaDades();
     }
 
     modificarItem(dataCreacio) {
@@ -24,20 +36,22 @@ class Gestor {
             this.items = {"nom" : nomMod, "descripció" : descripcioMod, "dataCreacio" : dataCreacio, "dataModificacio" : dataModificacio }
         }
     }
-    crearItem() {
-        nom = document.getElementById("nombre").textContent
-        descripcio = document.getElementById("descripcio").textContent
-        dataCreacio = new Date()
-        if(this) {
-            this.items.push({"nom" : nom, "descripció" : descripcio, "dataCreacio" : dataCreacio, "dataModificacio" : dataCreacio })
+    crearItem(item) {
+
+        if(this.items.find(i => i.nom === item.nom)) {
+
+            console.log("Ja existeix un item amb aquest nom.");
+            return;
+
         }
+        this.items.push({"nom" : nom, "descripció" : descripcio, "dataCreacio" : dataCreacio, "dataModificacio" : dataCreacio })
+        this.guardarItems();
     }
     
 
-    eliminarItem() {
-        if(this.items.length > 0)    {
-            this.items.splice(0, this.items.length);
-        }
+    eliminarItem(nom) {
+        this.items = this.items.filter(item => item !== nom);
+        this.guardarItems();
     }
 
 
