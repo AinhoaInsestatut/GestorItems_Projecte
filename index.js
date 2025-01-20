@@ -21,7 +21,7 @@ function renderitzarItems(filtre = '') {
 }
   
 formulari.addEventListener('submit', e => {
-    
+
     e.preventDefault();
   
     const nom = document.getElementById('nom').value;
@@ -44,5 +44,6 @@ formulari.addEventListener('submit', e => {
     } catch (error) {
         alert(error.message);
     }
+    
 });
   
