@@ -22,20 +22,12 @@ class Gestor {
             if (nouDades.imatge !== null) {
                 item.imatge = nouDades.imatge
             }
-            item.dataModificacio = new Date().toISOString();
+            item.dataModificacio = new Date();
     
         }
         this.guardaDades();
     }
 
-    modificarItem(dataCreacio) {
-        nomMod = document.getElementById("nombreNou")
-        descripcioMod = document.getElementById("descNou")
-        dataModificacio = new Date()
-        if (this) {
-            this.items = {"nom" : nomMod, "descripció" : descripcioMod, "dataCreacio" : dataCreacio, "dataModificacio" : dataModificacio }
-        }
-    }
     crearItem(item) {
 
         if(this.items.find(i => i.nom === item.nom)) {
@@ -44,7 +36,7 @@ class Gestor {
             return;
 
         }
-        this.items.push({"nom" : nom, "descripció" : descripcio, "dataCreacio" : dataCreacio, "dataModificacio" : dataCreacio })
+        this.items.push(item);
         this.guardarItems();
     }
     
