@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +8,33 @@
 </head>
 <body>
     <div class="container">
+
         <h1>GESTOR DE ITEMS</h1>
         <input type="text" id="cerca" placeholder="Cerca els items">
-        <div id="itemList" class="item-list"></div>
+        <ul id="llistatItems"></ul>
     
-        <form id="crearItemForm">
+        <form id="formulari">
+
             <h2>Crea un ítem</h2>
-            <input type="text" id="nombre" placeholder="Nom" required>
+            <input type="text" id="nom" placeholder="Nom" required>
             <textarea id="descripcio" placeholder="Descripció"></textarea>
-            <input type="text" id="imatge" placeholder="URL de la imatge (opcional)">
+
+            <select name="items" id="tipusItem">
+                <option value="simple">simple</option>
+                <option value="visual">visual</option>
+            </select>
+
+            <div id="apartatImg">
+                <input type="text" id="imatge" placeholder="URL de la imatge (opcional)">
+            </div>
             <button type="submit">Crear Ítem</button>
+
         </form>
-        <h5 id="error"></h5>
+        
     </div>
     
-    <script src="gestor.js"></script>
+    <script src="index.js"></script>
+    <script src="items.js"></script>
     
 </body>
 </html>
