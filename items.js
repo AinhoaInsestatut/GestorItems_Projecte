@@ -1,18 +1,24 @@
 class Item {
 
-    constructor(nom, descripcio) {
+    constructor(nom, descripcio, tipus) {
 
         this.nom = nom;
         this.descripcio = descripcio;
+        this.tipus = tipus;
         this.dataCreacio = new Date();
         this.dataModificacio = this.dataCreacio;
 
     }
   
-    actualitzarItemSimple(descripcio) {
+    actualitzar(dades) {
 
         this.descripcio = descripcio
         this.dataModificacio = new Date()
+        if (this.tipus === "visual") {
+
+            this.imatge = dades.imatge
+
+        }
 
     }
 
@@ -22,7 +28,7 @@ class ItemSimple extends Item {
 
     constructor(nom, descripcio) {
 
-        super(nom, descripcio)
+        super(nom, descripcio, 'simple')
 
     }
 
@@ -33,22 +39,11 @@ class ItemVisual extends Item {
 
     constructor(nom, descripcio, imatge) {
 
-        super(nom, descripcio)
+        super(nom, descripcio, 'visual')
         this.imatge = imatge
 
     }
   
-    actualitzarItemVisual(descripcio, imatge) {
-
-        super.actualitzarItemSimple(descripcio)
-        if (imatge !== undefined) {
-
-            this.imatge = imatge
-
-        }
-        this.dataModificacio = new Date()
-
-    }
 }
 
 class gestorItems {
@@ -66,27 +61,38 @@ class gestorItems {
         } else {
 
             this.items.push(item)
-            guardar();
+            this.guardar();
 
         }
 
     }
 
     actualitzarItem(nom, dades) {
+
         let item = this.items.find(i => i.nom === nom);
         if (!item) {
             document.getElementById("error").innerHTML = "Error: L'item no existeix"
         }
 
-        if (!item.imatge) {
+        item.actualitzar(dades)
+        this.guardar()
 
-            item.actualitzarItemVisual(dades.descripcio, dades.imatge)
+    }
 
-        } else {
+    eliminarItem(nom) {
 
-            item.actualitzarItemSimple(dades.descripcio)
+        this.items = this.items.filter(item => item !== nom)
+        this.guardarItems()
 
+    }
+
+    filtrarItems(input) {
+        if (!input)    {
+            return this.items
         }
+
+        inputMinuscules = input.toLowerCase()
+        return this.items.filter(i => i.nom.toLowerCase().includes(inputMinuscules))
     }
 
     guardar() {
