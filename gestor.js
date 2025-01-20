@@ -1,3 +1,23 @@
+class itemSimple{
+
+    constructor(nom, descripcio, dataCreacio, dataUltModificacio){
+        this.nom = nom;
+        this.descripcio = descripcio;
+        this.dataCreacio = new Date;
+        this.dataModificacio = this.dataCreacio;
+    }
+
+}
+
+class itemVisual extends itemSimple{
+
+    constructor(nom, descripcio, dataCreacio, dataUltModificacio, imatge){
+        super(nom, descripcio, dataCreacio, dataUltModificacio);
+        this.imatge = imatge;
+    }
+    
+}
+
 class Gestor {
 
     constructor() {
@@ -35,7 +55,18 @@ class Gestor {
             console.log("Ja existeix un item amb aquest nom.");
             return;
 
+        } else {
+
+            new itemSimple = {
+                nom: document.getElementById('nom'),
+                descripcio: document.getElementById('descripcio'),
+                imatge: document.getElementById('imatge'),
+                dataCreacio: new Date(),
+                dataModificacio: dataCreacio
+            }
         }
+
+
         this.items.push(item);
         this.guardarItems();
     }
