@@ -16,6 +16,7 @@ class GestorItems {
 
         this.items = []
         this.itemEditant = null
+        this.tipus = null
         this.mostraItems()
 
     }
@@ -55,14 +56,25 @@ class GestorItems {
 
         for (let item of this.items) {
 
+            
+            if (item.url !== null) {
+
+                this.tipus = "Visual"
+                
+            } else {
+                
+                this.tipus = "Simple"
+
+            }
             let itemDiv = `
 
                 <div class="item">
-                    <img src="${item.url}" alt="${item.nom}" width="20%"><br>
+                    <img src="${item.url}" width="20%"><br>
                     <strong>${item.nom}</strong><br>
+                    <span>Tipus: ${this.tipus}</span><br>
                     <span>Creat: ${item.dataCreacio}</span><br>
                     <span>Ultima modificació: ${item.ultimaModificacio}</span>
-                    
+
                     <button onclick="gestor.eliminaItem('${item.nom}')">Eliminar</button>
                     <button onclick="gestor.editarItem('${item.nom}')">Editar</button>
                 </div>
@@ -88,10 +100,12 @@ class GestorItems {
 
             let itemDiv = `
                 <div class="item">
-                    <img src="${item.url}" alt="${item.nom}" width="20%"><br>
+                    <img src="${item.url}" width="20%"><br>
                     <strong>${item.nom}</strong><br>
+                    <span>Tipus: ${this.tipus}</span><br>
                     <span>Creat: ${item.dataCreacio}</span><br>
-                    <span>Última modificació: ${item.ultimaModificacio}</span>
+                    <span>Ultima modificació: ${item.ultimaModificacio}</span>
+
                     <button onclick="gestor.eliminaItem('${item.nom}')">Eliminar</button>
                     <button onclick="gestor.editarItem('${item.nom}')">Editar</button>
                 </div>
@@ -114,13 +128,12 @@ class GestorItems {
 
         if (this.itemEditant) {
 
-            // Editar un ítem existent
             let item = this.items.find(i => i.nom === this.itemEditant)
             if (item) {
 
                 item.descripcio = descripcio
                 item.url = url
-                item.ultimaModificacio = new Date().toLocaleString()
+                item.ultimaModificacio = new Date()
                 this.desaItems()
                 this.mostraItems()
                 this.itemEditant = null
