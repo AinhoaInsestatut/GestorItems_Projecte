@@ -11,29 +11,31 @@
     <div class="container">
 
         <h1>GESTOR D'ITEMS</h1>
-        <input type="text" id="cerca" placeholder="Cerca els items" oninput="gestor.cercarItems(this.value)">
-        <ul id="llistatItems"></ul>
-
+        
         <form id="formulari" onsubmit="return gestor.crearItem(event)">
-
+            
             <h2>Crea un ítem</h2>
             <input type="text" id="nom" placeholder="Nom" required>
             <textarea id="descripcio" placeholder="Descripció"></textarea>
             <select name="items" id="tipusItem">
-
+                
                 <option value="simple">simple</option>
                 <option value="visual">visual</option>
-            
+                
             </select>
+            
             <div id="apartatImg">
-            
+                
                 <input type="text" id="imatge" placeholder="URL de la imatge (si fa falta)">
-            
+                
             </div>
             <button type="submit">Crear Ítem</button>
-
+            
         </form>
-
+        
+        <input type="text" id="cerca" placeholder="Cerca els items" oninput="gestor.cercarItems(this.value)">
+        <ul id="llistatItems"></ul>
+    
     </div>
 
     <script src="index.js"></script>

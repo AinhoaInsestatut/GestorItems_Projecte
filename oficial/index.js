@@ -65,15 +65,20 @@ class GestorItems {
     }
 
     cercarItems(consulta) {
+
         consulta = consulta.toLowerCase()
+
         let itemsFiltrats = this.items.filter(item =>
+
             item.nom.toLowerCase().includes(consulta)
+
         )
 
         let llistaItems = document.getElementById('llistatItems')
         llistaItems.innerHTML = ''
 
         for (let item of itemsFiltrats) {
+
             let itemDiv = `
                 <div class="item">
                     <strong>${item.nom}</strong><br>
@@ -98,7 +103,6 @@ class GestorItems {
         if (!nom) {
 
             alert('El nom és obligatori!')
-            return false
 
         }
 
@@ -106,7 +110,6 @@ class GestorItems {
         this.afegeixItem(nouItem)
 
         document.getElementById('formulari').reset()
-        return false
     }
 }
 
