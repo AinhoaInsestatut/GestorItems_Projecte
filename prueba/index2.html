@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor d'Ítems</title>
+    <title>Gestor d'items</title>
     <link rel="stylesheet" href="estilitos.css">
 </head>
 <body>
     <div class="container">
-        <h1>Gestor d'Ítems</h1>
-
-        <input type="text" id="cercar" placeholder="Cerca ítems">
-
-        <div id="item-list"></div>
+        
+        <h1>Gestor d'items</h1>
 
         <div class="form-container">
-            <input type="text" id="item-name" placeholder="Nom">
-            <input type="text" id="item-description" placeholder="Descripcio">
-            <input type="text" id="item-url" placeholder="URL de la imatge (opcional)">
+            
+            <input type="text" id="nomItem" placeholder="Nom">
+            <input type="text" id="descripcioItem" placeholder="Descripcio">
+            <input type="text" id="urlImatge" placeholder="URL de la imatge (si fa falta)">
             <button id="guardar">Desar</button>
+            
         </div>
+
+        <br>
+        <input type="text" id="cercar" placeholder="Cerca items">
+        <br>
+        <div id="llistaItems"></div>
+
     </div>
 
     <script src="index.js"></script>

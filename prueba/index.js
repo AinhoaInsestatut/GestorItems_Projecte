@@ -11,75 +11,78 @@ class Item {
 }
 
 class GestorItems {
+
     constructor() {
 
-        this.items = JSON.parse(localStorage.getItem('items')) || [];
+        this.items = [] //|| JSON.parse(localStorage.getItem('items'))  
         this.mostraItems();
         
     }
 
     desaItems() {
 
-        localStorage.setItem('items', JSON.stringify(this.items));
+        localStorage.setItem('items', JSON.stringify(this.items))
 
     }
 
     afegeixItem(item) {
+
         if (this.items.some(existing => existing.nom === item.nom)) {
 
-            alert('Ja existeix un ítem amb aquest nom!');
+            alert('Ja existeix un ítem amb aquest nom!')
             return;
 
         }
-        this.items.push(item);
-        this.desaItems();
-        this.mostraItems();
+        this.items.push(item)
+        this.desaItems()
+        this.mostraItems()
+
     }
 
     eliminaItem(nom) {
 
-        this.items = this.items.filter(item => item.nom !== nom);
-        this.desaItems();
-        this.mostraItems();
+        this.items = this.items.filter(item => item.nom !== nom)
+        this.desaItems()
+        this.mostraItems()
 
     }
 
     mostraItems() {
 
-        const llistaItems = document.getElementById('item-list');
-        llistaItems.innerHTML = '';
+        let llistaItems = document.getElementById('llistaItems')
+        llistaItems.innerHTML = ''
         
         this.items.forEach(item => {
 
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'item';
+            let itemDiv = document.createElement('div')
+            itemDiv.className = 'item'
 
-            const detallsItem = document.createElement('div');
+            let detallsItem = document.createElement('div')
             detallsItem.innerHTML = `
                 <strong>${item.nom}</strong><br>
                 <span>Creat: ${item.dataCreacio}</span><br>
                 <span>Última modificació: ${item.ultimaModificacio}</span>
             `;
 
-            const botoEliminar = document.createElement('button');
-            botoEliminar.textContent = 'Eliminar';
-            botoEliminar.onclick = () => this.eliminaItem(item.nom);
+            let botoEliminar = document.createElement('button')
+            botoEliminar.textContent = 'Eliminar'
+            botoEliminar.onclick = () => this.eliminaItem(item.nom)
 
-            itemDiv.appendChild(detallsItem);
-            itemDiv.appendChild(botoEliminar);
-            llistaItems.appendChild(itemDiv);
+            itemDiv.appendChild(detallsItem)
+            itemDiv.appendChild(botoEliminar)
+            llistaItems.appendChild(itemDiv)
 
         });
     }
 }
 
-const gestor = new GestorItems();
+let gestor = new GestorItems();
 
 document.getElementById('guardar').addEventListener('click', () => {
 
-    const nom = document.getElementById('item-name').value;
-    const descripcio = document.getElementById('item-description').value;
-    const url = document.getElementById('item-url').value;
+    let nom = document.getElementById('nomItem').value;
+    let descripcio = document.getElementById('descripcioItem').value;
+    let url = document.getElementById('urlImatge').value;
 
     if (!nom) {
 
@@ -88,28 +91,28 @@ document.getElementById('guardar').addEventListener('click', () => {
 
     }
 
-    const nouItem = new Item(nom, descripcio, url);
+    let nouItem = new Item(nom, descripcio, url);
     gestor.afegeixItem(nouItem);
 
-    document.getElementById('item-name').value = '';
-    document.getElementById('item-description').value = '';
-    document.getElementById('item-url').value = '';
+    document.getElementById('nomItem').value = '';
+    document.getElementById('descripcioItem').value = '';
+    document.getElementById('urlImatge').value = '';
 });
 
 document.getElementById('cercar').addEventListener('input', (e) => {
 
-    const consulta = e.target.value.toLowerCase();
-    const itemsFiltrats = gestor.items.filter(item =>
+    let consulta = e.target.value.toLowerCase();
+    let itemsFiltrats = gestor.items.filter(item =>
 
         item.nom.toLowerCase().includes(consulta)
 
     );
 
-    const llistaItems = document.getElementById('item-list');
+    let llistaItems = document.getElementById('llistaItems');
     llistaItems.innerHTML = '';
     itemsFiltrats.forEach(item => {
 
-        const itemDiv = document.createElement('div');
+        let itemDiv = document.createElement('div');
         itemDiv.className = 'item';
         itemDiv.innerHTML = `
             <strong>${item.nom}</strong><br>
@@ -117,7 +120,7 @@ document.getElementById('cercar').addEventListener('input', (e) => {
             <span>Última modificació: ${item.ultimaModificacio}</span>
         `;
 
-        const botoEliminar = document.createElement('button');
+        let botoEliminar = document.createElement('button');
         botoEliminar.textContent = 'Eliminar';
         botoEliminar.onclick = () => gestor.eliminaItem(item.nom);
 
