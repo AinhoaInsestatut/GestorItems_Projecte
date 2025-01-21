@@ -32,7 +32,7 @@ class GestorItems {
 
             alert('Existeix un ítem amb aquest nom!')
             return;
-            
+
         }
         this.items.push(item);
         this.desaItems();
@@ -42,7 +42,7 @@ class GestorItems {
 
     eliminaItem(nom) {
 
-        this.items = this.items.filter(item => item.nom !== nom);
+        this.items = this.items.filter(item => item.nom !== nom)
         this.desaItems();
         this.mostraItems();
 
@@ -56,14 +56,17 @@ class GestorItems {
         for (let item of this.items) {
 
             let itemDiv = `
+
                 <div class="item">
-                    <img src="${item.url}" alt="${item.nom}" width="100"><br>
+                    <img src="${item.url}" alt="${item.nom}" width="20%"><br>
                     <strong>${item.nom}</strong><br>
                     <span>Creat: ${item.dataCreacio}</span><br>
                     <span>Ultima modificació: ${item.ultimaModificacio}</span>
+                    
                     <button onclick="gestor.eliminaItem('${item.nom}')">Eliminar</button>
                     <button onclick="gestor.editarItem('${item.nom}')">Editar</button>
                 </div>
+
             `
             llistaItems.innerHTML += itemDiv;
         }
@@ -82,9 +85,10 @@ class GestorItems {
         llistaItems.innerHTML = ''
 
         for (let item of itemsFiltrats) {
+
             let itemDiv = `
                 <div class="item">
-                    <img src="${item.url}" alt="${item.nom}" width="100"><br>
+                    <img src="${item.url}" alt="${item.nom}" width="20%"><br>
                     <strong>${item.nom}</strong><br>
                     <span>Creat: ${item.dataCreacio}</span><br>
                     <span>Última modificació: ${item.ultimaModificacio}</span>
@@ -93,6 +97,7 @@ class GestorItems {
                 </div>
             `
             llistaItems.innerHTML += itemDiv
+
         }
     }
 

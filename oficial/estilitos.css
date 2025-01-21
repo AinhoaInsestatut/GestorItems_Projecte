@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 900px;
     margin: 20px auto;
     padding: 20px;
     background: #fff;
@@ -34,8 +34,6 @@ span {
 
 input, textarea {
     width: 100%;
-    padding: 8px;
-    margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
