@@ -7,36 +7,27 @@
     <link rel="stylesheet" href="estilitos.css">
 </head>
 <body>
-
     <div class="container">
-
         <h1>GESTOR D'ITEMS</h1>
-        
-        <form id="formulari" onsubmit="return gestor.crearItem(event)">
-            
-            <h2>Crea un ítem</h2>
-            
+
+        <form id="formulari" onsubmit="return false;">
+            <h2>Crea o edita un ítem</h2>
             <input type="text" id="nom" placeholder="Nom" required>
             <textarea id="descripcio" placeholder="Descripció"></textarea>
             <select name="items" id="tipusItem">
-                
                 <option value="simple">simple</option>
                 <option value="visual">visual</option>
-                
             </select>
-            
-            <input type="text" id="imatge" placeholder="URL de la imatge (si fa falta)">
-            
-            <button type="submit">Crear Ítem</button>
-            
+            <div id="apartatImg">
+                <input type="text" id="imatge" placeholder="URL de la imatge (si fa falta)">
+            </div>
+            <button type="button" onclick="gestor.crearOEditarItem()">Guardar Ítem</button>
         </form>
-        
+
         <input type="text" id="cerca" placeholder="Cerca els items" oninput="gestor.cercarItems(this.value)">
         <ul id="llistatItems"></ul>
-    
     </div>
 
     <script src="index.js"></script>
-
 </body>
 </html>

@@ -1,5 +1,4 @@
 class Item {
-
     constructor(nom, descripcio, url) {
         this.nom = nom;
         this.descripcio = descripcio;
@@ -7,109 +6,120 @@ class Item {
         this.dataCreacio = new Date().toLocaleString();
         this.ultimaModificacio = this.dataCreacio;
     }
-
 }
 
 class GestorItems {
-
     constructor() {
-
-        this.items = []
-        this.mostraItems()
+        this.items = [];
+        this.itemEditant = null; // Per identificar si estem editant un ítem
+        this.mostraItems();
     }
 
     desaItems() {
-
-        localStorage.setItem('items', JSON.stringify(this.items))
-
+        localStorage.setItem('items', JSON.stringify(this.items));
     }
+
     afegeixItem(item) {
-
-        let existeix = this.items.find(i => i.nom === item.nom)
-        if (existeix) {
-
-            alert('Existeix un ítem amb aquest nom!')
-
+        if (this.items.find(i => i.nom === item.nom)) {
+            alert('Existeix un ítem amb aquest nom!');
+            return;
         }
-
-        this.items.push(item)
-        this.desaItems()
-        this.mostraItems()
+        this.items.push(item);
+        this.desaItems();
+        this.mostraItems();
     }
 
     eliminaItem(nom) {
-        this.items = this.items.filter(item => item.nom !== nom)
-        this.desaItems()
-        this.mostraItems()
+        this.items = this.items.filter(item => item.nom !== nom);
+        this.desaItems();
+        this.mostraItems();
     }
 
     mostraItems() {
-
-        let llistaItems = document.getElementById('llistatItems')
-        llistaItems.innerHTML = ''
+        const llistaItems = document.getElementById('llistatItems');
+        llistaItems.innerHTML = '';
 
         for (let item of this.items) {
-
-            let itemDiv = `
+            const itemDiv = `
                 <div class="item">
                     <strong>${item.nom}</strong><br>
                     <span>Creat: ${item.dataCreacio}</span><br>
                     <span>Última modificació: ${item.ultimaModificacio}</span>
                     <button onclick="gestor.eliminaItem('${item.nom}')">Eliminar</button>
+                    <button onclick="gestor.editarItem('${item.nom}')">Editar</button>
                 </div>
-            `
-
-            llistaItems.innerHTML += itemDiv 
+            `;
+            llistaItems.innerHTML += itemDiv;
         }
     }
 
     cercarItems(consulta) {
-
-        consulta = consulta.toLowerCase()
-
-        let itemsFiltrats = this.items.filter(item =>
-
+        consulta = consulta.toLowerCase();
+        const itemsFiltrats = this.items.filter(item =>
             item.nom.toLowerCase().includes(consulta)
+        );
 
-        )
-
-        let llistaItems = document.getElementById('llistatItems')
-        llistaItems.innerHTML = ''
+        const llistaItems = document.getElementById('llistatItems');
+        llistaItems.innerHTML = '';
 
         for (let item of itemsFiltrats) {
-
-            let itemDiv = `
+            const itemDiv = `
                 <div class="item">
                     <strong>${item.nom}</strong><br>
                     <span>Creat: ${item.dataCreacio}</span><br>
                     <span>Última modificació: ${item.ultimaModificacio}</span>
                     <button onclick="gestor.eliminaItem('${item.nom}')">Eliminar</button>
+                    <button onclick="gestor.editarItem('${item.nom}')">Editar</button>
                 </div>
-            `
-
-            llistaItems.innerHTML += itemDiv
+            `;
+            llistaItems.innerHTML += itemDiv;
         }
     }
 
-    crearItem(event) {
-
-        event.preventDefault()
-
-        let nom = document.getElementById('nom').value
-        let descripcio = document.getElementById('descripcio').value
-        let url = document.getElementById('imatge').value
+    crearOEditarItem() {
+        const nom = document.getElementById('nom').value;
+        const descripcio = document.getElementById('descripcio').value;
+        const url = document.getElementById('imatge').value;
 
         if (!nom) {
-
-            alert('El nom és obligatori!')
-
+            alert('El nom és obligatori!');
+            return;
         }
 
-        let nouItem = new Item(nom, descripcio, url)
-        this.afegeixItem(nouItem)
+        if (this.itemEditant) {
+            // Editar un ítem existent
+            const item = this.items.find(i => i.nom === this.itemEditant);
+            if (item) {
+                item.descripcio = descripcio;
+                item.url = url;
+                item.ultimaModificacio = new Date().toLocaleString();
+                this.desaItems();
+                this.mostraItems();
+                this.itemEditant = null;
+                this.netejaFormulari();
+            }
+        } else {
+            // Crear un ítem nou
+            const nouItem = new Item(nom, descripcio, url);
+            this.afegeixItem(nouItem);
+        }
+    }
 
-        document.getElementById('formulari').reset()
+    editarItem(nom) {
+        const item = this.items.find(i => i.nom === nom);
+        if (item) {
+            this.itemEditant = nom; // Guardem el nom de l'ítem que s'està editant
+            document.getElementById('nom').value = item.nom;
+            document.getElementById('descripcio').value = item.descripcio;
+            document.getElementById('imatge').value = item.url || '';
+        }
+    }
+
+    netejaFormulari() {
+        document.getElementById('nom').value = '';
+        document.getElementById('descripcio').value = '';
+        document.getElementById('imatge').value = '';
     }
 }
 
-let gestor = new GestorItems();
+const gestor = new GestorItems();
