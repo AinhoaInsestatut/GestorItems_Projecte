@@ -15,7 +15,10 @@
 
             <h2>Crea o edita un ítem</h2>
             <input type="text" id="nom" placeholder="Nom" required>
-            <textarea id="descripcio" placeholder="Descripció"></textarea>
+            <br>
+            <br>
+            <textarea id="descripcio" placeholder="Descripcio"></textarea>
+            <br>
             
             <select name="items" id="tipusItem">
 
@@ -23,16 +26,17 @@
                 <option value="visual">visual</option>
 
             </select>
-
-            <div id="apartatImg">
+            <br><br>
+            <div>
 
                 <input type="text" id="imatge" placeholder="URL de la imatge (si fa falta)">
 
             </div>
+            <br>
             <button type="button" onclick="gestor.crearOEditarItem()">Guardar Ítem</button>
 
         </form>
-
+        <br>
         <input type="text" id="cerca" placeholder="Cerca els items" oninput="gestor.cercarItems(this.value)">
         <ul id="llistatItems"></ul>
 
