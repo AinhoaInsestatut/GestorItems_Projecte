@@ -31,8 +31,7 @@ class GestorItems {
 
         if (this.items.find(i => i.nom === item.nom)) {
 
-            alert('Existeix un ítem amb aquest nom!')
-            return;
+            alert('Existeix un ítem amb aquest nom')
 
         }
         this.items.push(item);
@@ -122,8 +121,7 @@ class GestorItems {
         let url = document.getElementById('imatge').value
 
         if (!nom) {
-            alert('El nom és obligatori!')
-            return
+            alert('El nom és obligatori')
         }
 
         if (this.itemEditant) {
@@ -138,13 +136,14 @@ class GestorItems {
                 this.mostraItems()
                 this.itemEditant = null
                 this.netejaFormulari()
-
+                
             }
-
+            
         } else {
-
+            
             let nouItem = new Item(nom, descripcio, url)
             this.afegeixItem(nouItem)
+            this.netejaFormulari()
 
         }
     }
