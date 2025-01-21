@@ -4,7 +4,7 @@ class Item {
         this.nom = nom;
         this.descripcio = descripcio;
         this.url = url || null;
-        this.dataCreacio = new Date().toLocaleString();
+        this.dataCreacio = new Date();
         this.ultimaModificacio = this.dataCreacio;
     }
     
@@ -14,8 +14,8 @@ class GestorItems {
 
     constructor() {
 
-        this.items = [] //|| JSON.parse(localStorage.getItem('items'))  
-        this.mostraItems();
+        this.items = [] || localStorage.getItem('items')
+        this.mostraItems()
         
     }
 
@@ -26,10 +26,11 @@ class GestorItems {
     }
 
     afegeixItem(item) {
-        //Hay que cambiar el some por algo mejor entedible
-        if (this.items.some(existing => existing.nom === item.nom)) {
 
-            alert('Ja existeix un ítem amb aquest nom!')
+        let existeix = this.items.find(i => i.nom === item.nom)
+        if (existeix) {
+
+            alert('Existeix un item amb aquest nom')
             return;
 
         }
@@ -51,82 +52,91 @@ class GestorItems {
 
         let llistaItems = document.getElementById('llistaItems')
         llistaItems.innerHTML = ''
-        //Hay que cambiar el forEach por algo mejor entedible
-        this.items.forEach(item => {
 
+        for (let i = 0; i < this.items.length; i++) {
+
+            let item = this.items[i];
             let itemDiv = document.createElement('div')
+
             itemDiv.className = 'item'
+            itemDiv.innerHTML = `
 
-            let detallsItem = document.createElement('div')
-            detallsItem.innerHTML = `
                 <strong>${item.nom}</strong><br>
-                <span>Creat: ${item.dataCreacio}</span><br>
+                <span>Creat: ${item.dataCreacio}</span>
+                <br>
                 <span>Última modificació: ${item.ultimaModificacio}</span>
-            `;
-
+                
+            `
+                
             let botoEliminar = document.createElement('button')
             botoEliminar.textContent = 'Eliminar'
-            botoEliminar.onclick = () => this.eliminaItem(item.nom)
 
-            itemDiv.appendChild(detallsItem)
-            itemDiv.appendChild(botoEliminar)
-            llistaItems.appendChild(itemDiv)
+            botoEliminar.addEventListener('click', () => {
 
-        });
+                this.eliminaItem(item.nom)
+
+            })
+
+            itemDiv.append(botoEliminar)
+            llistaItems.append(itemDiv)
+
+        }
     }
 }
 
-let gestor = new GestorItems();
+let gestor = new GestorItems()
 
 document.getElementById('guardar').addEventListener('click', () => {
 
-    let nom = document.getElementById('nomItem').value;
-    let descripcio = document.getElementById('descripcioItem').value;
-    let url = document.getElementById('urlImatge').value;
+    let nom = document.getElementById('nomItem').value
+    let descripcio = document.getElementById('descripcioItem').value
+    let url = document.getElementById('urlImatge').value
 
     if (!nom) {
 
-        alert('El nom és obligatori!');
+        alert('El nom és obligatori!')
         return;
 
     }
 
-    let nouItem = new Item(nom, descripcio, url);
-    gestor.afegeixItem(nouItem);
+    let nouItem = new Item(nom, descripcio, url)
+    gestor.afegeixItem(nouItem)
 
-    document.getElementById('nomItem').value = '';
-    document.getElementById('descripcioItem').value = '';
-    document.getElementById('urlImatge').value = '';
-});
+    document.getElementById('nomItem').value = ''
+    document.getElementById('descripcioItem').value = ''
+    document.getElementById('urlImatge').value = ''
+
+})
 
 document.getElementById('cercar').addEventListener('input', (e) => {
 
-    let consulta = e.target.value.toLowerCase();
+    let consulta = e.target.value.toLowerCase()
     let itemsFiltrats = gestor.items.filter(item =>
 
         item.nom.toLowerCase().includes(consulta)
 
-    );
-    //Esto de poner lets innecesarios hay que cambiarlo
-    let llistaItems = document.getElementById('llistaItems');
-    llistaItems.innerHTML = '';
-    itemsFiltrats.forEach(item => {
+    )
 
-        let itemDiv = document.createElement('div');
-        itemDiv.className = 'item';
+    let llistaItems = document.getElementById('llistaItems')
+    llistaItems.innerHTML = ''
+
+    for (let item of itemsFiltrats) {
+
+        let itemDiv = document.createElement('div')
+        itemDiv.className = 'item'
         itemDiv.innerHTML = `
             <strong>${item.nom}</strong><br>
             <span>Creat: ${item.dataCreacio}</span><br>
             <span>Última modificació: ${item.ultimaModificacio}</span>
-        `;
+        `
 
-        let botoEliminar = document.createElement('button');
-        botoEliminar.textContent = 'Eliminar';
-        //Cambiar el botoEliminar por algo mejor entendible
-        botoEliminar.onclick = () => gestor.eliminaItem(item.nom);
-        //Cambiar el append child por algo mejor entendible
-        itemDiv.appendChild(botoEliminar);
-        llistaItems.appendChild(itemDiv);
+        let botoEliminar = document.createElement('button')
+        botoEliminar.textContent = 'Eliminar'
+        botoEliminar.addEventListener('click', () => gestor.eliminaItem(item.nom))
 
-    });
-});
+        itemDiv.append(botoEliminar)
+        llistaItems.append(itemDiv)
+
+    }
+
+})
