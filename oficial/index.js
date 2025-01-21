@@ -23,14 +23,13 @@ class GestorItems {
         localStorage.setItem('items', JSON.stringify(this.items))
 
     }
-
     afegeixItem(item) {
 
-        let existeix = this.items.find(i => i.nom === item.nom);
+        let existeix = this.items.find(i => i.nom === item.nom)
         if (existeix) {
 
-            alert('Existeix un ítem amb aquest nom!');
-            return;
+            alert('Existeix un ítem amb aquest nom!')
+
         }
 
         this.items.push(item)

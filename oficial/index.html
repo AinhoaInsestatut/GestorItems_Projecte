@@ -15,6 +15,7 @@
         <form id="formulari" onsubmit="return gestor.crearItem(event)">
             
             <h2>Crea un ítem</h2>
+            
             <input type="text" id="nom" placeholder="Nom" required>
             <textarea id="descripcio" placeholder="Descripció"></textarea>
             <select name="items" id="tipusItem">
@@ -24,11 +25,8 @@
                 
             </select>
             
-            <div id="apartatImg">
-                
-                <input type="text" id="imatge" placeholder="URL de la imatge (si fa falta)">
-                
-            </div>
+            <input type="text" id="imatge" placeholder="URL de la imatge (si fa falta)">
+            
             <button type="submit">Crear Ítem</button>
             
         </form>
