@@ -32,6 +32,7 @@ class GestorItems {
         if (this.items.find(i => i.nom === item.nom)) {
 
             alert('Existeix un ítem amb aquest nom')
+            return
 
         }
         this.items.push(item);
@@ -83,12 +84,12 @@ class GestorItems {
         }
     }
 
-    cercarItems(consulta) {
+    cercarItems(itemATrobar) {
 
-        consulta = consulta.toLowerCase();
+        itemATrobar = itemATrobar.toLowerCase();
         let itemsFiltrats = this.items.filter(item =>
 
-            item.nom.toLowerCase().includes(consulta)
+            item.nom.toLowerCase().includes(itemATrobar)
 
         )
 
@@ -121,7 +122,9 @@ class GestorItems {
         let url = document.getElementById('imatge').value
 
         if (!nom) {
+
             alert('El nom és obligatori')
+            return
         }
 
         if (this.itemEditant) {
