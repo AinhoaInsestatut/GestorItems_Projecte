@@ -3,31 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor d'items</title>
+    <title>GESTOR D'ITEMS</title>
     <link rel="stylesheet" href="estilitos.css">
 </head>
 <body>
+
     <div class="container">
-        
-        <h1>Gestor d'items</h1>
 
-        <div class="form-container">
-            
-            <input type="text" id="nomItem" placeholder="Nom">
-            <input type="text" id="descripcioItem" placeholder="Descripcio">
-            <input type="text" id="urlImatge" placeholder="URL de la imatge (si fa falta)">
-            <button id="guardar" onclick="desarItem()">Desar</button>
-            
-        </div>
+        <h1>GESTOR D'ITEMS</h1>
+        <input type="text" id="cerca" placeholder="Cerca els items" oninput="gestor.cercarItems(this.value)">
+        <ul id="llistatItems"></ul>
 
-        <br>
-        <input type="text" id="cercar" placeholder="Cerca items">
-        <button id="cerca" onclick="cercarItem()">Cerca</button>
-        <br>
-        <div id="llistaItems"></div>
+        <form id="formulari" onsubmit="return gestor.crearItem(event)">
+
+            <h2>Crea un ítem</h2>
+            <input type="text" id="nom" placeholder="Nom" required>
+            <textarea id="descripcio" placeholder="Descripció"></textarea>
+            <select name="items" id="tipusItem">
+
+                <option value="simple">simple</option>
+                <option value="visual">visual</option>
+            
+            </select>
+            <div id="apartatImg">
+            
+                <input type="text" id="imatge" placeholder="URL de la imatge (si fa falta)">
+            
+            </div>
+            <button type="submit">Crear Ítem</button>
+
+        </form>
 
     </div>
 
     <script src="index.js"></script>
+
 </body>
 </html>
