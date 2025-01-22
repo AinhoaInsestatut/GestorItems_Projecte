@@ -23,7 +23,7 @@ class GestorItems {
 
     desaItems() {
 
-        localStorage.setItem('items', JSON.stringify(this.items));
+        localStorage.setItem('items', JSON.stringify(this.items))
 
     }
 
@@ -80,16 +80,18 @@ class GestorItems {
                 </div>
 
             `
-            llistaItems.innerHTML += itemDiv;
+            llistaItems.innerHTML += itemDiv
         }
     }
 
-    cercarItems(itemATrobar) {
+    cercarItems() {
 
-        itemATrobar = itemATrobar.toLowerCase();
+        let itemATrobar = document.getElementById('cerca').value.toLowerCase()
+        
+        let regex = new RegExp(itemATrobar, 'i')
         let itemsFiltrats = this.items.filter(item =>
 
-            item.nom.toLowerCase().includes(itemATrobar)
+            regex.test(item.nom)
 
         )
 
